@@ -1,0 +1,25 @@
+/*//i8259A是一个中断控制器，会使CPU去执行相应中断号的中断子程序*/
+#include "io.h"
+
+//初始化i8259A
+void init8259A(void) {
+    // 屏蔽所有中断源:0xFF-->0x21和0xA1
+    // outb(0x21, 0xFF);
+    // outb(0xA1, 0xFF);
+
+    //主片初始化
+    outb(0x20, 0x11);
+    outb(0x21, 0x20);
+    outb(0x21, 0x04);
+    outb(0x21, 0x03);
+    //从片初始化
+    outb(0xA0, 0x11);
+    outb(0xA1, 0x28);
+    outb(0xA1, 0x02);
+    outb(0xA1, 0x01);
+
+    //设置允许时钟中断
+    unsigned char shield = inb(0x21);
+    shield = shield & 0xFE;
+    outb(0x21, shield);
+}

@@ -1,0 +1,8 @@
+{
+    "C_Cpp.errorSquiggles": "Enabled",
+    "files.associations": {
+        "*.csv": "plaintext",
+        "mem.h": "c",
+        "userinterface.h": "c"
+    }
+}
